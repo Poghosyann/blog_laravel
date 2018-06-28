@@ -1,7 +1,18 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Narek
- * Date: 6/28/2018
- * Time: 3:58 PM
- */
+@extends('admin.layouts.app_admin')
+
+@section('content')
+    <div class="container">
+        @component('admin.components.breadcrumbs')
+            @slot('title') Create a category @endslot
+            @slot('parent') Home @endslot
+            @slot('active') Categories @endslot
+        @endcomponent
+
+        <hr>
+
+            <form action="#">
+
+            </form>
+
+    </div>
+@endsection
