@@ -17,16 +17,25 @@
                 <th class="text-right">Action</th>
             </thead>
             <tbody>
-                @forelse($categories as $category)
+                @forelse ($categories as $category)
                     <tr>
-                        <td>{{ $category->title }}</td>
-                        <td>{{ $category->published }}</td>
-                        <td><a href="{{ route('admin.category.edit', ['id' => $category->id]) }}"><i class="fa fa-edit"></i></a></td>
+                        <td>{{$category->title}}</td>
+                        <td>{{$category->published}}</td>
+                        <td class="text-right">
+                            <form onsubmit="if(confirm('Delete?')){ return true }else{ return false }" action="{{route('admin.category.destroy', $category)}}" method="post">
+                                <input type="hidden" name="_method" value="DELETE">
+                                {{ csrf_field() }}
+
+                                <a class="btn btn-default" href="{{route('admin.category.edit', $category)}}"><i class="fa fa-edit"></i></a>
+
+                                <button type="submit" class="btn"><i class="fa fa-trash"></i></button>
+                            </form>
+                        </td>
                     </tr>
-                    @empty
-                    <tr>
-                        <td colspan="3" class="text-center"><h2>Empty data</h2></td>
-                    </tr>
+                @empty
+                <tr>
+                    <td colspan="3" class="text-center"><h2>Empty data</h2></td>
+                </tr>
                 @endforelse
             </tbody>
             <tfoot>
